@@ -256,7 +256,7 @@ function getToDoList($status){
 
     $sqlWhere = "";
     if(isset($status)){
-        $sqlWhere = "WHERE status = '$status' LIMIT 5";
+        $sqlWhere = "WHERE status = '$status' ORDER BY task_number DESC LIMIT 5";
     }
 
     $sql = "SELECT * FROM re_events ";
