@@ -70,6 +70,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="trending_stocks">Trending Stocks</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="to_do_list">To Do List</a>
+                </li>
             </ul>
         </div>
     </div>

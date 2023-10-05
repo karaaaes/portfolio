@@ -1,4 +1,6 @@
 <?php
+include "database.php";
+
 function selectSpesificTask($taskNumber){
     include "database.php";
     $dataFinal = array();
@@ -247,6 +249,39 @@ function getStocksProfile($symbols){
     curl_close($ch);
     
     return $response;
+}
+
+function getToDoList($status){
+    global $conn;
+
+    $sqlWhere = "";
+    if(isset($status)){
+        $sqlWhere = "WHERE status = '$status' LIMIT 5";
+    }
+
+    $sql = "SELECT * FROM re_events ";
+    $sql .= $sqlWhere;
+
+    $result = $conn->query($sql);
+
+    if ($result) {
+        $toDoList = array();
+        while ($row = $result->fetch_assoc()) {
+            $event = array(
+                'event_details' => $row['event_details'],
+                'created_date' => $row['created_date'],
+                'plan_completed_date' => $row['plan_completed_date'],
+                'actual_completed_date' => $row['actual_completed_date'],
+                'status' => $row['status']
+            );
+
+            $toDoList[] = $event;
+        }
+
+        return $toDoList;
+    } else {
+        return false;
+    }
 }
 
 ?>
