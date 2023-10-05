@@ -2,6 +2,10 @@ body {
     font-family: 'Roboto', sans-serif !important;
 }
 
+.icon-showed{
+    vertical-align: top !important;
+}
+
 .header-section {
     background-color: #353535;
     width: 100%;
@@ -66,22 +70,40 @@ button:focus {
 }
 
 .task-list-in-progress {
+    cursor: pointer;
     background-color: #FCCC9A;
     border-radius: 15px;
 }
 
+.task-list-in-progress:hover {
+    background-color: #FA9F42; /* Warna latar belakang saat dihover */
+    color: #fff !important; /* Warna teks saat dihover */
+  }
+
 .task-list-completed {
+    cursor: pointer;
     background-color: #AFEEDA;
     border-radius: 15px;
 }
 
+.task-list-completed:hover {
+    background-color: #37A885; /* Warna latar belakang saat dihover */
+    color: #fff !important; /* Warna teks saat dihover */
+  }
+
 .task-list-cancelled {
     background-color: #F48886;
     border-radius: 15px;
+    cursor: pointer;
+}
+
+.task-list-cancelled:hover {
+    background-color: #F84B48; /* Warna latar belakang saat dihover */
+    color: #fff !important; /* Warna teks saat dihover */
 }
 
 .title-text {
-    color: black !important;
+    /* color: black !important; */
 }
 
 .arrow {
@@ -89,18 +111,24 @@ button:focus {
 }
 
 .task-name {
-    margin-top: 10px;
-    font-size: 32px;
+    margin-top: 14px;
+    font-size: 24px;
     padding-right: 10px;
-    color: black;
+    /* color: black; */
+}
+
+.task-name-completed{
+    margin-top: 24px;
+    font-size: 24px;
+    padding-right: 10px;
+    /* color: black; */
 }
 
 .task-name-cancelled {
-    margin-top: 15px;
-    font-size: 32px;
+    margin-top: 24px;
+    font-size: 24px;
     padding-right: 10px;
-    color: black;
-    margin-bottom: 13px;
+    /* color: black; */
 }
 
 .task-footer {
@@ -113,6 +141,11 @@ button:focus {
 
 .admin-icon {
     text-align: right;
+    cursor: pointer;
+}
+
+.admin-icon-img{
+    margin-top: 10px;
 }
 
 .created-at {
@@ -123,10 +156,12 @@ button:focus {
     -webkit-box-flex: 1;
     -ms-flex: 1 1 auto;
     flex: 1 1 auto;
+    padding-bottom: 0.9rem !important;
 }
 
 .icon-color {
-    margin-top: -1px;
+    margin-top: -3px;
+    margin-left: 3px;
 }
 
 .button-switcher {

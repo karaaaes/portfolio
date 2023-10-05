@@ -263,7 +263,7 @@ a:hover strong {
 
 strong,
 b {
-  color: black;
+  /* color: black; */
   font-weight: 600;
 }
 

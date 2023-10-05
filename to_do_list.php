@@ -25,6 +25,34 @@ $dataToDoListCancelled = getToDoList("Cancelled");
 
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 9999;
+            opacity: 0;
+            transition: opacity 2s;
+        }
+
+        .overlay.active {
+            display: flex;
+            /* Menggunakan flex untuk mengatur gambar di tengah */
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+        }
+
+        .overlay img {
+            max-width: 100%;
+            /* Sesuaikan ukuran gambar GIF sesuai kebutuhan */
+            max-height: 100%;
+        }
+    </style>
 </head>
 
 <body class="is-preload">
@@ -91,7 +119,7 @@ include 'templates/navbar.php'
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="arrow">
-                                                    <img src="images/arrow-right.png" alt="">
+                                                    <img class="icon-showed" src="images/arrow-right.png" alt="">
                                                 </div>
                                             </div>
                                         </div>
@@ -107,8 +135,8 @@ include 'templates/navbar.php'
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="admin-icon">
-                                                        <img src="images/admin-icon.png"
-                                                            style="width: 45px; height: 45px;" alt="">
+                                                        <img class="admin-icon-img" src="images/admin-icon-noshadow.png"
+                                                            style="width: 45px; height: 45px;" alt="" title="Admin">
                                                     </div>
                                                 </div>
                                             </div>
@@ -118,6 +146,9 @@ include 'templates/navbar.php'
                                     <?php 
                                         endforeach
                                     ?>
+                                    <div class="overlay overlay-in-progress">
+                                        <img src="images/inprogress-gif.gif" alt="Animated GIF">
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -159,31 +190,31 @@ include 'templates/navbar.php'
                                                 <div class="title-text">
                                                     <strong>Completed</strong>
                                                 </div>
-                                                <strong><?= $actualDateCompletedFinal; ?></strong>
+                                                <!-- <strong><?= $actualDateCompletedFinal; ?></strong> -->
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="arrow">
-                                                    <img src="images/arrow-right.png" alt="">
+                                                    <img class="icon-showed" src="images/arrow-right.png" alt="">
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="task-name">
+                                        <div class="task-name-completed">
                                             <?= $dataCompleted['event_details']; ?>
                                         </div>
                                         <div class="task-footer-completed">
                                             <div class="row">
                                                 <div class="col-md-8" style="">
-                                                    <div class="created-at-completed">
+                                                    <!-- <div class="created-at-completed">
                                                         Deadline : <?= $planDateCompletedFinal; ?>
-                                                    </div>
-                                                    <div class="created-at-completed">
+                                                    </div> -->
+                                                    <div class="created-at">
                                                         Created at : <?= $createdDateCompletedFinal; ?>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="admin-icon">
-                                                        <img src="images/admin-icon.png"
-                                                            style="width: 45px; height: 45px;" alt="">
+                                                        <img class="admin-icon-img" src="images/admin-icon-noshadow.png"
+                                                            style="width: 45px; height: 45px;" alt="" title="Admin">
                                                     </div>
                                                 </div>
                                             </div>
@@ -193,11 +224,13 @@ include 'templates/navbar.php'
                                     <?php 
                                         endforeach
                                     ?>
+                                    <div class="overlay overlay-completed">
+                                        <img src="images/completed-people.gif" alt="Animated GIF">
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                     <div class="col-md-4">
                         <div class="accordion" id="accordionThree">
                             <div class="card" style="border:none !important;">
@@ -244,18 +277,18 @@ include 'templates/navbar.php'
                                         </div>
                                         <div class="task-footer-completed">
                                             <div class="row">
-                                                <div class="col-md-8" style="">
-                                                    <div class="created-at-completed">
+                                                <div class="col-md-8">
+                                                    <!-- <div class="created-at-completed">
                                                         Deadline : <?= $newFormatDateCancelled; ?>
-                                                    </div>
-                                                    <div class="created-at-completed">
+                                                    </div> -->
+                                                    <div class="created-at">
                                                         Created at : <?= $newCreatedDateCancelled; ?>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <div class="admin-icon">
-                                                        <img src="images/admin-icon.png"
-                                                            style="width: 45px; height: 45px;" alt="">
+                                                    <div class="admin-icon" style="">
+                                                        <img class="admin-icon-img" src="images/admin-icon-noshadow.png"
+                                                            style="width: 45px; height: 45px;" alt="" title="Admin">
                                                     </div>
                                                 </div>
                                             </div>
@@ -265,6 +298,9 @@ include 'templates/navbar.php'
                                     <?php 
                                         endforeach
                                     ?>
+                                    <div class="overlay overlay-cancelled">
+                                        <img src="images/cancelled.gif" alt="Animated GIF">
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -272,7 +308,6 @@ include 'templates/navbar.php'
                 </div>
             </div>
         </div>
-
         <div class="bottom-divider"></div>
     </div>
 
@@ -310,6 +345,48 @@ include 'templates/navbar.php'
                     }
                 }
             });
+        });
+    </script>
+    <script>
+        // Dapatkan elemen overlay dan card-body
+        var overlay = document.querySelector('.overlay-in-progress');
+        var overlayCompleted = document.querySelector('.overlay-completed');
+        var overlayCancelled = document.querySelector('.overlay-cancelled');
+        var cardBodyInProgress = document.querySelector('.task-list-in-progress');
+        var cardBodyCompleted = document.querySelector('.task-list-completed');
+        var cardBodyCancelled = document.querySelector('.task-list-cancelled');
+
+        // Tambahkan event listener untuk mengaktifkan overlay saat card-body diklik
+        cardBodyInProgress.addEventListener('click', function () {
+            // Aktifkan overlay
+            overlay.classList.add('active');
+
+            // Setelah 2 detik, nonaktifkan overlay
+            setTimeout(function () {
+                overlay.classList.remove('active');
+            }, 2500); // 2000 milidetik (2 detik)
+        });
+
+        // Tambahkan event listener untuk mengaktifkan overlay saat card-body diklik
+        cardBodyCompleted.addEventListener('click', function () {
+            // Aktifkan overlay
+            overlayCompleted.classList.add('active');
+
+            // Setelah 2 detik, nonaktifkan overlay
+            setTimeout(function () {
+                overlayCompleted.classList.remove('active');
+            }, 2000); // 2000 milidetik (2 detik)
+        });
+
+        // Tambahkan event listener untuk mengaktifkan overlay saat card-body diklik
+        cardBodyCancelled.addEventListener('click', function () {
+            // Aktifkan overlay
+            overlayCancelled.classList.add('active');
+
+            // Setelah 2 detik, nonaktifkan overlay
+            setTimeout(function () {
+                overlayCancelled.classList.remove('active');
+            }, 2000); // 2000 milidetik (2 detik)
         });
     </script>
 
