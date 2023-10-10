@@ -200,29 +200,29 @@ function deleteDataProjectServer($linkToPath){
 }
 
 function getTrendingStocks(){
-    // example code
-    $apiUrl = 'https://api.goapi.id/v1/stock/idx/trending?api_key=SkqbdMFXfFfdi7f7PQqPzKVHjbOpCo';
+    // // example code
+    // $apiUrl = 'https://api.goapi.id/v1/stock/idx/trending?api_key=SkqbdMFXfFfdi7f7PQqPzKVHjbOpCo';
 
-    // Inisialisasi session cURL
-    $ch = curl_init();
+    // // Inisialisasi session cURL
+    // $ch = curl_init();
     
-    // Set URL dan opsi cURL
-    curl_setopt($ch, CURLOPT_URL, $apiUrl);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    // // Set URL dan opsi cURL
+    // curl_setopt($ch, CURLOPT_URL, $apiUrl);
+    // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     
-    // Eksekusi permintaan cURL
-    $response = curl_exec($ch);
+    // // Eksekusi permintaan cURL
+    // $response = curl_exec($ch);
     
-    // Periksa apakah permintaan berhasil atau tidak
-    if ($response === false) {
-        $error = curl_error($ch);
-        echo 'Error: ' . $error;
-    }
+    // // Periksa apakah permintaan berhasil atau tidak
+    // if ($response === false) {
+    //     $error = curl_error($ch);
+    //     echo 'Error: ' . $error;
+    // }
     
-    // Tutup session cURL
-    curl_close($ch);
+    // // Tutup session cURL
+    // curl_close($ch);
     
-    return $response;
+    // return $response;
 }
 
 function getStocksProfile($symbols){
