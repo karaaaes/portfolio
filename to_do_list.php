@@ -10,7 +10,7 @@ $dataToDoListCancelled = getToDoList("Cancelled");
 <html>
 
 <head>
-    <title>라카 웹사이트</title>
+    <title>Portfolio Raka | To Do Lists</title>
     <link href='https://upload.wikimedia.org/wikipedia/commons/5/53/Rockstar_Games_Logo.svg' rel='shortcut icon'>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -81,7 +81,7 @@ include 'templates/navbar.php'
         <div class="container">
             <div class="accordion-wrap">
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-12 col-md-4 second-status">
                         <div class="accordion" id="accordion">
                             <div class="card" style="border:none !important;">
                                 <div class="card-header" id="headingOne">
@@ -153,7 +153,7 @@ include 'templates/navbar.php'
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-12 col-md-4 second-status">
                         <div class="accordion" id="accordionTwo">
                             <div class="card" style="border:none !important;">
                                 <div class="card-header" id="headingOne">
@@ -231,7 +231,7 @@ include 'templates/navbar.php'
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-12 col-md-4 second-status">
                         <div class="accordion" id="accordionThree">
                             <div class="card" style="border:none !important;">
                                 <div class="card-header" id="headingOne">

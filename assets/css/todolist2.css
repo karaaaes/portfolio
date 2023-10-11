@@ -176,5 +176,12 @@ button:focus {
     height: 100px;
 }
 
+@media (max-width: 768px) {
+    .second-status{
+        margin-bottom: 6px;
+    }
+}
+
+
 
 
