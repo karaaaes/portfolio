@@ -1,13 +1,51 @@
 <?php
 include 'admin/backend/database.php';
 include 'admin/backend/core_function.php';
+
+// Get Trending 9 Trending Stocks
+$i = 0;
+$dataStocks = getTrendingStocks();
+
+if($dataStocks['status'] == "success"){
+    $allStocks = $dataStocks['data']['results'];
+}else{
+    $allStocks = "";
+}
+
+$allStocksList = "";
+$i = 0;
+foreach ($allStocks as $data) :
+    if($i < 9):
+        $eachStock = $data['ticker'] . "%2C";
+        $eachPercent[$data['ticker']] = number_format($data['percent'], 2);
+        $allStocksList .= $eachStock; 
+        $i += 1;
+    endif;
+endforeach;
+$allStocksList = rtrim($allStocksList,"%2C");
+// End of Get Trending 9 Trending Stocks
+
+// Get All Information Trending Stocks
+$dataInformationStocks = getAllStocksProfile($allStocksList);
+if($dataInformationStocks['status'] == "success"){
+    $allPriceStocks = $dataInformationStocks['data']['results'];
+}else{
+    $allPriceStocks = "";
+}
+// End of Get All Information Trending Stocks
+
+
+$dataAllCompaniesProfile = getAllProfileCompanies();
+if($dataAllCompaniesProfile['status'] == "success"){
+    $allProfilesCompanies = $dataAllCompaniesProfile['data']['results'];
+}else{
+    $allProfilesCompanies = "";
+}
+foreach($allProfilesCompanies as $dataCompanies) :
+    $eachProfiles[$dataCompanies['ticker']] = $dataCompanies['logo'];
+endforeach;
 ?>
 <!DOCTYPE HTML>
-<!--
-	Editorial by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
 
 <head>
@@ -184,14 +222,14 @@ include 'admin/backend/core_function.php';
         }
 
         .card-list:hover {
-            transform: scale(1.05);
+            transform: scale(1.04);
         }
 
         .attribute {
             margin-top: 25px;
         }
 
-        .attribute-2{
+        .attribute-2 {
             margin-top: 10px;
         }
 
@@ -269,32 +307,66 @@ include 'admin/backend/core_function.php';
                     </div>
                 </div>
                 <div class="row">
+                    <?php 
+                        $j = 0;
+                        foreach($allPriceStocks as $data) : 
+                            if (isset($eachPercent[$data['ticker']])) {
+                                $percent = $eachPercent[$data['ticker']];
+                            } else {
+                                $percent = "N/A"; // You can set a default value or handle it as needed
+                            }
+
+                            if (isset($eachProfiles[$data['ticker']])) {
+                                $profiles = $eachProfiles[$data['ticker']];
+                            } else {
+                                $profiles = "N/A"; // You can set a default value or handle it as needed
+                            }
+                            // $dataCompany = getStocksProfile($data['ticker']);
+                    ?>
                     <div class="col-md-4 col-12 card-list">
                         <div class="card-background">
                             <div class="row">
                                 <div class="col-md-4 content-card">
                                     <!-- Tambahkan class d-flex dan justify-content-center -->
                                     <div class="rounded-background">
-                                        <img src="images/goto-logo.svg" alt="Logo">
+                                        <img src="<?= $profiles ?>" alt="Logo">
                                     </div>
                                 </div>
                                 <div class="col-md-2 content-card">
                                     <div class="stocks-title">
-                                        GOTO
+                                        <?= $data['ticker']; ?>
                                     </div>
                                 </div>
                                 <div class="col-md-1 content-card mark-change">
-                                    <img class="price-change" src="images/triangle-red.svg" alt="">
+                                    <?php 
+                                        if (strpos($percent, '-') === false) {
+                                    ?>
+                                        <img class="price-change" src="images/triangle-green.svg" alt="">
+                                    <?php
+                                        } else {
+                                    ?>
+                                        <img class="price-change" src="images/triangle-red.svg" alt="">
+                                    <?php
+                                        }
+                                    ?>
                                 </div>
                                 <div class="col-md-3 content-card">
-                                    <div class="price-text-danger">
-                                        -1.91%
-                                    </div>
-                                </div>
-                                <div class="col-md-2 content-card">
-                                    <a href="#">
-                                        <img class="plane-icon" src="images/plane-icon.svg" alt="">
-                                    </a>
+                                <?php 
+                                        if (strpos($percent, '-') === false) {
+                                    ?>
+                                        <div class="price-text-success">
+                                            <?= $percent . "%";?>
+                                        </div>
+                                    <?php
+                                        } else {
+                                    ?>
+                                        <div class="price-text-danger">
+                                            <?= $percent . "%";?>
+                                        </div>
+                                    <?php
+                                        }
+                                    ?>
+                                    
                                 </div>
                             </div>
                             <div class="row attribute">
@@ -303,7 +375,7 @@ include 'admin/backend/core_function.php';
                                         Open
                                     </div>
                                     <div class="price-attribute">
-                                        80
+                                        <?= $data['open']; ?>
                                     </div>
                                 </div>
                                 <div class="col-md-2 group-attribute">
@@ -311,7 +383,7 @@ include 'admin/backend/core_function.php';
                                         Close
                                     </div>
                                     <div class="price-attribute">
-                                        85
+                                        <?= $data['close']; ?>
                                     </div>
                                 </div>
                                 <div class="col-md-2 group-attribute">
@@ -319,7 +391,7 @@ include 'admin/backend/core_function.php';
                                         Low
                                     </div>
                                     <div class="price-attribute">
-                                        83
+                                        <?= $data['low']; ?>
                                     </div>
                                 </div>
                             </div>
@@ -329,7 +401,7 @@ include 'admin/backend/core_function.php';
                                         High
                                     </div>
                                     <div class="price-attribute">
-                                        83
+                                        <?= $data['high']; ?>
                                     </div>
                                 </div>
                                 <div class="col-md-2 group-attribute">
@@ -337,262 +409,22 @@ include 'admin/backend/core_function.php';
                                         Volume
                                     </div>
                                     <div class="price-attribute">
-                                        242800
+                                        <?php 
+                                            $formattedNumber = number_format($data['volume'], 0, ',', '.');
+                                            echo $formattedNumber;
+                                        ?>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 col-12 card-list">
-                        <div class="card-background">
-                            <div class="row">
-                                <div class="col-md-4 content-card">
-                                    <!-- Tambahkan class d-flex dan justify-content-center -->
-                                    <div class="rounded-background">
-                                        <img src="images/goto-logo.svg" alt="Logo">
-                                    </div>
-                                </div>
-                                <div class="col-md-2 content-card">
-                                    <div class="stocks-title">
-                                        BBNI
-                                    </div>
-                                </div>
-                                <div class="col-md-1 content-card mark-change">
-                                    <img class="price-change" src="images/triangle-green.svg" alt="">
-                                </div>
-                                <div class="col-md-3 content-card">
-                                    <div class="price-text-success">
-                                        7.91%
-                                    </div>
-                                </div>
-                                <div class="col-md-2 content-card">
-                                    <a href="#">
-                                        <img class="plane-icon" src="images/plane-icon.svg" alt="">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="row attribute">
-                                <div class="col-md-2 group-attribute">
-                                    <div class="title-attribute">
-                                        Open
-                                    </div>
-                                    <div class="price-attribute">
-                                        5000
-                                    </div>
-                                </div>
-                                <div class="col-md-2 group-attribute">
-                                    <div class="title-attribute">
-                                        Close
-                                    </div>
-                                    <div class="price-attribute">
-                                        5125
-                                    </div>
-                                </div>
-                                <div class="col-md-2 group-attribute">
-                                    <div class="title-attribute">
-                                        Low
-                                    </div>
-                                    <div class="price-attribute">
-                                        4995
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row attribute-2">
-                                <div class="col-md-2 group-attribute">
-                                    <div class="title-attribute">
-                                        High
-                                    </div>
-                                    <div class="price-attribute">
-                                        5225
-                                    </div>
-                                </div>
-                                <div class="col-md-2 group-attribute">
-                                    <div class="title-attribute">
-                                        Volume
-                                    </div>
-                                    <div class="price-attribute">
-                                        242800
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-12 card-list">
-                        <div class="card-background">
-                            <div class="row">
-                                <div class="col-md-4 content-card">
-                                    <!-- Tambahkan class d-flex dan justify-content-center -->
-                                    <div class="rounded-background">
-                                        <img src="images/goto-logo.svg" alt="Logo">
-                                    </div>
-                                </div>
-                                <div class="col-md-2 content-card">
-                                    <div class="stocks-title">
-                                        GOTO
-                                    </div>
-                                </div>
-                                <div class="col-md-1 content-card mark-change">
-                                    <img class="price-change" src="images/triangle-red.svg" alt="">
-                                </div>
-                                <div class="col-md-3 content-card">
-                                    <div class="price-text-danger">
-                                        -1.91%
-                                    </div>
-                                </div>
-                                <div class="col-md-2 content-card">
-                                    <a href="#">
-                                        <img class="plane-icon" src="images/plane-icon.svg" alt="">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="row attribute">
-                                <div class="col-md-2 group-attribute">
-                                    <div class="title-attribute">
-                                        Open
-                                    </div>
-                                    <div class="price-attribute">
-                                        80
-                                    </div>
-                                </div>
-                                <div class="col-md-2 group-attribute">
-                                    <div class="title-attribute">
-                                        Close
-                                    </div>
-                                    <div class="price-attribute">
-                                        85
-                                    </div>
-                                </div>
-                                <div class="col-md-2 group-attribute">
-                                    <div class="title-attribute">
-                                        Low
-                                    </div>
-                                    <div class="price-attribute">
-                                        83
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row attribute-2">
-                                <div class="col-md-2 group-attribute">
-                                    <div class="title-attribute">
-                                        High
-                                    </div>
-                                    <div class="price-attribute">
-                                        83
-                                    </div>
-                                </div>
-                                <div class="col-md-2 group-attribute">
-                                    <div class="title-attribute">
-                                        Volume
-                                    </div>
-                                    <div class="price-attribute">
-                                        242800
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <?php 
+                        endforeach;
+                    ?>
                 </div>
 
 
-                <!-- <div class="col-lg-12 animate__animated animate__zoomIn">
-                        <div class="row">
-                            <?php 
-                                    $data = getTrendingStocks();
-                                    if ($data) {
-                                        // Mengkonversi data JSON menjadi array asosiatif
-                                        $result = json_decode($data, true);
-                                    
-                                        // Memeriksa apakah permintaan berhasil
-                                        if (isset($result['status']) && $result['status'] == 'success') {
-                                            $trendingStocks = $result['data']['results'];
-                                            foreach ($trendingStocks as $stock) {
-                                                $dataProfile = getStocksProfile($stock['ticker']);
-                                                $resultProfile = json_decode($dataProfile, true);
-                                                ?>
-                            <div class="col-md-4 mb-4">
-                                <div class="card card-ruler">
-                                    <div class="card-img-cover"
-                                        style="padding:auto; display: flex; justify-content: center; align-items: center; overflow: hidden;">
-                                        <img class="card-img-top" src="<?= $resultProfile['data']['result']['logo'] ?>"
-                                            alt="Card image cap" style="width: 100%;">
-                                    </div>
-                                    <div class="card-body">
-                                        <h5 class="card-title"><?= $resultProfile['data']['result']['name']; ?>
-                                            (<?= $resultProfile['data']['result']['ticker']; ?>)</h5>
-                                        <p class="card-text">
-                                            <table class="table" border="0">
-                                                <thead>
-                                                    <tr style="">
-                                                        <th scope="col" style="font-weight: 700; color:black;">
-                                                            Details</th>
-                                                        <th scope="col" style="font-weight: 700; color:black;">
-                                                            Values</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <th scope="row">Open</th>
-                                                        <td><?= $resultProfile['data']['last_price']['open']; ?>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">High</th>
-                                                        <td><?= $resultProfile['data']['last_price']['high']; ?>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">Low</th>
-                                                        <td><?= $resultProfile['data']['last_price']['low']; ?></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">Close</th>
-                                                        <td><?= $resultProfile['data']['last_price']['close']; ?>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">Change</th>
-                                                        <?php 
-                                                                $formattedNumber = number_format($stock['percent'], 2);
-                                                                // Mengecek string1
-                                                                if (strpos($formattedNumber, '-') !== false) {
-                                                                    ?>
-                                                        <td style="color: red; font-weight: 300;">
-                                                            <?= $formattedNumber; ?>%</td>
-                                                        <?php
-                                                                }else {
-                                                                    ?>
-                                                        <td style="color: green; font-weight: 300;">
-                                                            <?= $formattedNumber; ?>%</td>
-                                                        <?php
-                                                                }
-                                                            ?>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">Volume</th>
-                                                        <td><?= $resultProfile['data']['last_price']['volume']; ?>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </p>
-                                        <p class="card-text">Website
-                                            <?= $resultProfile['data']['result']['ticker']; ?> : <a
-                                                href="<?= $resultProfile['data']['result']['website']; ?>">Visit
-                                                Link</a></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <?php
-                                            }
-                                        } else {
-                                            echo 'Permintaan gagal: ' . $result['message'];
-                                        }
-                                    } else {
-                                        echo 'Gagal mengambil data dari API.';
-                                    }
-                                ?>
-                        </div>
-                    </div> -->
+
             </section>
         </div>
 
