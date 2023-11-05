@@ -10,7 +10,7 @@ include 'admin/backend/database.php';
 <html>
 
 <head>
-    <title>라카 웹사이트</title>
+    <title>Portfolio Raka</title>
     <link href='https://upload.wikimedia.org/wikipedia/commons/5/53/Rockstar_Games_Logo.svg' rel='shortcut icon'>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -59,10 +59,10 @@ include 'templates/navbar.php'
                             <a href="mailto:rakaeshardiansyah@gmail.com" class="icon brands fa-google"><span
                                     class="label">Gmail</span></a>
                         </li>
-                        <li><a href="https://twitter.com/karaaaes" class="icon brands fa-twitter"><span
+                        <!-- <li><a href="https://twitter.com/karaaaes" class="icon brands fa-twitter"><span
                                     class="label">Twitter</span></a></li>
                         <li><a href="https://facebook.com/raka.noelant" class="icon brands fa-facebook-f"><span
-                                    class="label">Facebook</span></a></li>
+                                    class="label">Facebook</span></a></li> -->
                         <li><a href="https://instagram.com/rakaeshardiansyah" class="icon brands fa-instagram"><span
                                     class="label">Instagram</span></a></li>
                     </ul>
@@ -97,7 +97,7 @@ include 'templates/navbar.php'
                     <div class="col-12 mt-3">
                         <div class="carousel slide" data-ride="carousel" id="myCarousel">
                             <div class="carousel-inner">
-                            <?php 
+                                <?php 
                                 $sqlGetWidget = "SELECT * FROM re_widget_list 
                                 WHERE widget_type = 1 
                                 AND status = 1 
@@ -111,10 +111,11 @@ include 'templates/navbar.php'
                             ?>
                                 <div class="carousel-item <?php echo $activeClass; ?>">
                                     <a href="<?php echo $data['link']; ?>">
-                                        <img class="d-block w-100" src="<?php echo $data['file_directory'];?>" alt="Slide <?php echo $i + 1; ?>"/>
+                                        <img class="d-block w-100" src="<?php echo $data['file_directory'];?>"
+                                            alt="Slide <?php echo $i + 1; ?>" />
                                     </a>
                                 </div>
-                            <?php } ?>
+                                <?php } ?>
                             </div>
                             <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -133,35 +134,55 @@ include 'templates/navbar.php'
                     <header class="major">
                         <h2>Daily Mood' of Mine</h2>
                     </header>
-                    <div class="col-12 d-flex">
-                        <div class="row">
-                            <div class="col-3 d-flex justify-content-center">
-                                <img src="images/emoji_1.png" alt="" height="100%" width="100%">
+                    <div class="row mt-3">
+                        <div class="col-6" style="padding-left: 20px; padding-right: 20px;">
+                            <div class="row">
+                                <div class="img-resize" style="width:160px; height: 160px;">
+                                    <img src="images/emoji_1.png" alt="" height="100%" width="100%"
+                                        style="object-fit:contain;">
+                                </div>
+                                <div class="img-resize" style="width:160px; height: 160px;">
+                                    <img src="images/emoji_2.png" alt="" height="100%" width="100%"
+                                        style="object-fit:contain;">
+                                </div>
+                                <div class="img-resize" style="width:160px; height: 160px;">
+                                    <img src="images/emoji_3.png" alt="" height="100%" width="100%"
+                                        style="object-fit:contain;">
+                                </div>
+                                <div class="img-resize" style="width:160px; height: 160px;">
+                                    <img src="images/emoji_9.png" alt="" height="100%" width="100%"
+                                        style="object-fit:contain;">
+                                </div>
                             </div>
-                            <div class="col-3 d-flex justify-content-center">
-                                <img src="images/emoji_2.png" alt="" height="100%" width="100%">
-                            </div>
-                            <div class="col-3 d-flex justify-content-center">
-                                <img src="images/emoji_3.png" alt="" height="100%" width="100%">
-                            </div>
-                            <div class="col-3 d-flex justify-content-center">
-                                <img src="images/emoji_9.png" alt="" height="100%" width="100%">
+                            <div class="row">
+                                <div class="img-resize" style="width:160px; height: 160px;">
+                                    <img src="images/emoji_5.png" alt="" height="100%" width="100%"
+                                        style="object-fit:contain;">
+                                </div>
+                                <div class="img-resize" style="width:160px; height: 160px;">
+                                    <img src="images/emoji_6.png" alt="" height="100%" width="100%"
+                                        style="object-fit:contain;">
+                                </div>
+                                <div class="img-resize" style="width:160px; height: 160px;">
+                                    <img src="images/emoji_7.png" alt="" height="100%" width="100%"
+                                        style="object-fit:contain;">
+                                </div>
+                                <div class="img-resize" style="width:160px; height: 160px;">
+                                    <img src="images/emoji_8.png" alt="" height="100%" width="100%"
+                                        style="object-fit:contain;">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-12 d-flex ">
-                        <div class="row">
-                            <div class="col-3 d-flex justify-content-center">
-                                <img src="images/emoji_5.png" alt="" height="100%" width="100%">
-                            </div>
-                            <div class="col-3 d-flex justify-content-center">
-                                <img src="images/emoji_6.png" alt="" height="100%" width="100%">
-                            </div>
-                            <div class="col-3 d-flex justify-content-center">
-                                <img src="images/emoji_7.png" alt="" height="100%" width="100%">
-                            </div>
-                            <div class="col-3 d-flex justify-content-center">
-                                <img src="images/emoji_8.png" alt="" height="100%" width="100%">
+                        <div class="col-6">
+                            <div class="content">
+                                <header>
+                                    <h1>Great moods can brings a lot of productivity</h1>
+                                </header>
+                                <p class="mt-4">
+                                    Positive emotions, like enthusiasm and optimism, can significantly boost
+                                    productivity. When you're in a great mood, you tend to be more focused, creative,
+                                    and efficient in your work. It's essential to maintain a positive mindset and a work
+                                    environment that supports it for optimal productivity. Great moods can significantly enhance productivity. Remember to manage your time and make room for some leisure! Maximizing your time is the key to being more productive.</p>
                             </div>
                         </div>
                     </div>
@@ -211,83 +232,6 @@ include 'templates/navbar.php'
                             </div>
                         </article>
                     </div>
-                </section>
-
-
-
-                <!-- Section -->
-                <section data-aos="fade-down">
-                    <header class="major">
-                        <h2>Latest 5 To Do List</h2>
-                    </header>
-                    <ul class="list-group">
-                        <?php 
-                        $sqlCheckTop3 = "SELECT * FROM re_events ORDER BY modified_date DESC LIMIT 5";
-                        $executeCheckTop3 = mysqli_query($conn,$sqlCheckTop3);
-                        for($i=0 ; $i < mysqli_num_rows($executeCheckTop3) ; $i++){
-                            $dataListTop3[$i] = mysqli_fetch_assoc($executeCheckTop3);
-                            $taskNumber = $dataListTop3[$i]['task_number'];
-                            $eventDetails = $dataListTop3[$i]['event_details'];
-                            $planCompletedDate = $dataListTop3[$i]['plan_completed_date'];
-                            $actualCompletedDate = $dataListTop3[$i]['actual_completed_date'];
-                            $createdDate = $dataListTop3[$i]['created_date'];
-                            $status = $dataListTop3[$i]['status'];
-
-                            if($status == 'Cancelled'){
-                                echo "<li class='list-group-item alert-danger mt-2'>";
-                            }else if($status == 'Planned'){
-                                echo "<li class='list-group-item alert-primary mt-2'>";
-                            }else if($status == 'Completed'){
-                                echo "<li class='list-group-item alert-success mt-2'>";
-                            }
-                        ?>
-                        <div class="item">
-                            <h5 class="title-detail" onclick="toggleDetail(<?php echo $i;?>)">
-                                <?php echo $eventDetails; ?></h5>
-                            <div class="detail" id="detail<?php echo $i;?>">
-                                <div class="container">
-                                    <div class="row">
-                                        <p class="mt-3"><strong>Detail Task : </strong></p>
-                                        <div class="col-md-12">
-                                            <table class="table table-hover" style="color: black !important;">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col">Plan Completed Date</th>
-                                                        <th scope="col">Actual Completed Date</th>
-                                                        <th scope="col">Created Date</th>
-                                                        <th scope="col">Current Status</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td><?php echo $planCompletedDate; ?></td>
-                                                        <td><?php echo $actualCompletedDate; ?></td>
-                                                        <td><?php echo $createdDate; ?></td>
-                                                        <?php
-                                                            if($status == 'Cancelled'){
-                                                                echo "<td class='alert-danger'>$status</td>";
-                                                            }else if($status == 'Planned'){
-                                                                echo "<td class='alert-primary'>$status</td>";
-                                                            }else if($status == 'Completed'){
-                                                                echo "<td class='alert-success'>$status</td>";
-                                                            }
-                                                            ?>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-
-                            </div>
-                        </div>
-                        </li>
-                        <?php
-                        }
-                        ?>
-                    </ul>
                 </section>
             </div>
         </div>

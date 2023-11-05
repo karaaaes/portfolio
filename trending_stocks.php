@@ -78,7 +78,7 @@ endforeach;
         }
 
         .subheader {
-            margin-top: 40px;
+            margin-top: 117px;
             font-size: 16px;
             letter-spacing: 0.16em;
             font-style: italic;
@@ -303,7 +303,7 @@ endforeach;
                 </div>
                 <div class="row header-2">
                     <div class="col-12">
-                        Top IDX Composite trending stocks ranking based on Oct 05, 2023.
+                        Top IDX Composite trending stocks ranking based on <?php echo date("M d, Y"); ?>.
                     </div>
                 </div>
                 <div class="row">
