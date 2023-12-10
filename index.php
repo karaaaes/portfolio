@@ -21,8 +21,13 @@ include 'admin/backend/database.php';
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/navbar.css">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+
+    <!-- Menyertakan file CSS dari MDB melalui CDN -->
     <style>
         .item {
             overflow: hidden;
@@ -43,8 +48,8 @@ include 'admin/backend/database.php';
 
 <body class="is-preload">
     <?php
-include 'templates/navbar.php'
-?>
+        include 'templates/navbar.php'
+    ?>
     <div id="wrapper">
         <!-- Main -->
         <div id="main">
@@ -81,7 +86,7 @@ include 'templates/navbar.php'
                             technical proficiency and creative thinking, adept at delivering robust, innovative, and
                             user-centric web applications.</p>
                         <ul class="actions">
-                            <li><a href="https://www.linkedin.com/in/rakaesh/" class="button big">Touch Me</a></li>
+                            <li><a href="https://www.linkedin.com/in/rakaesh/" class="button-index">Touch Me</a></li>
                         </ul>
                     </div>
                     <span class="image object">
@@ -90,7 +95,7 @@ include 'templates/navbar.php'
                 </section>
 
                 <!-- Section -->
-                <section data-aos="fade-down">
+                <!-- <section data-aos="fade-down">
                     <header class="major">
                         <h2>What's New !</h2>
                     </header>
@@ -127,7 +132,7 @@ include 'templates/navbar.php'
                             </a>
                         </div>
                     </div>
-                </section>
+                </section> -->
 
                 <!-- Section -->
                 <section data-aos="fade-down">
@@ -182,7 +187,9 @@ include 'templates/navbar.php'
                                     Positive emotions, like enthusiasm and optimism, can significantly boost
                                     productivity. When you're in a great mood, you tend to be more focused, creative,
                                     and efficient in your work. It's essential to maintain a positive mindset and a work
-                                    environment that supports it for optimal productivity. Great moods can significantly enhance productivity. Remember to manage your time and make room for some leisure! Maximizing your time is the key to being more productive.</p>
+                                    environment that supports it for optimal productivity. Great moods can significantly
+                                    enhance productivity. Remember to manage your time and make room for some leisure!
+                                    Maximizing your time is the key to being more productive.</p>
                             </div>
                         </div>
                     </div>
