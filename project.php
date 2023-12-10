@@ -15,10 +15,19 @@ include 'admin/backend/core_function.php';
     <link href='https://upload.wikimedia.org/wikipedia/commons/5/53/Rockstar_Games_Logo.svg' rel='shortcut icon'>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link href='https://upload.wikimedia.org/wikipedia/commons/5/53/Rockstar_Games_Logo.svg' rel='shortcut icon'>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="description"
+        content="Saya adalah seorang website developer dengan fokus pada backend system. Lihat portofolio saya untuk melihat karya-karya terbaru dan proyek-proyek yang telah saya selesaikan.">
+    <meta name="author" content="Raka Putra Eshardiansyah">
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/navbar.css">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <style>
         .item {
             overflow: hidden;
@@ -38,7 +47,6 @@ include 'admin/backend/core_function.php';
         .card-ruler {
             margin-right: 10px !important;
             margin-bottom: 10px;
-            /* margin-top: -30px; */
         }
 
         img {
@@ -50,7 +58,7 @@ include 'admin/backend/core_function.php';
         }
 
         .card-img-top {
-            width: fit-content;
+            /* width: fit-content; */
             height: fit-content;
         }
     </style>
